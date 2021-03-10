@@ -9,13 +9,13 @@
             $url = $this->getUrl();
 
             if($url){
-                if(file_exists("../app/controllers/" . ucwords($url[0]) . ".php")){
+                if(file_exists(APPROOT . "/controllers/" . ucwords($url[0]) . ".php")){
                     $this->currentController = ucwords($url[0]);
                     unset($url[0]);
                 }
             }
 
-            require_once "../app/controllers/" . $this->currentController . ".php";
+            require_once APPROOT . "/controllers/" . $this->currentController . ".php";
             $this->currentController = new $this->currentController;
 
             if(isset($url[1])){
