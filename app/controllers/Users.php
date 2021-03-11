@@ -13,7 +13,7 @@
             if($_SERVER["REQUEST_METHOD"] == "POST"){
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
-                $data =[
+                $data = [
                     "firstname" => FormSanitizer::sanitizeString($_POST["firstname"]),
                     "lastname" => FormSanitizer::sanitizeString($_POST["lastname"]),
                     "username" => FormSanitizer::sanitizeUsername($_POST["username"]),
@@ -25,18 +25,31 @@
                     "lastname_err" => "",
                     "username_err" => "",
                     "email_err" => "",
+                    "password_err" => "",
                     "confirm_email_err" => "",
                     "confirm_password_err" => "",
                 ];
 
                 $data["firstname_err"] = FormValidator::validateString($data["firstname"]);
                 $data["lastname_err"] = FormValidator::validateString($data["firstname"]);
-                
+                $data["confirm_email_err"] = FormValidator::validateConfirmEmail($data["email"], $data["confirm_email"]);
+                $data["password_err"] = FormValidator::validatePassword($data["password"]);
+                $data["confirm_password_err"] = FormValidator::validateConfirmPassword($data["password"], $data["confirm_password"]);
+
                 $this->view("users/register", $data);
+
+                if(empty($data["firstname_err"]) && empty($data["lastname_err"]) && empty($data["username_err"]) && empty($data["email_err"]) && empty($data["password_err"]) && empty($data["confirm_email_err"]) && empty($data["confirm_password_err"])){
+                    $data["password"] = password_hash($data["password"], PASSWORD_DEFAULT);
+                    if($this->userModel->register($data)){
+                        header("location:" . URLROOT . "/users/login");
+                    } else {
+                        die("Something went wrong");
+                    }
+                }
 
             } else {
 
-                $data =[
+                $data = [
                     "firstname" => "",
                     "lastname" => "",
                     "username" => "",
@@ -47,6 +60,7 @@
                     "lastname_err" => "",
                     "username_err" => "",
                     "email_err" => "",
+                    "password_err" => "",
                     "confirm_email_err" => "",
                     "confirm_password_err" => "",
                 ];

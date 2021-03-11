@@ -11,23 +11,29 @@
     </div>
     <form action="" method="POST">
       <?php echo $data["firstname_err"];?>
-      <input type="text" name="firstname" placeholder="Firstname" required />
-      <input type="text" name="lastname" placeholder="Lastname" required />
-      <input type="text" name="username" placeholder="Username" required />
-      <input type="email" name="email" placeholder="Email" required />
+      <input type="text" name="firstname" placeholder="Firstname" value="<?php echo (!empty($data["firstname"])) ? $data["firstname"] : "" ; ?>"/>
+      <?php echo $data["lastname_err"];?>
+      <input type="text" name="lastname" placeholder="Lastname" value="<?php echo (!empty($data["lastname"])) ? $data["lastname"] : "" ; ?>"/>
+      <?php echo $data["username_err"];?>
+      <input type="text" name="username" placeholder="Username" value="<?php echo (!empty($data["username"])) ? $data["username"] : "" ; ?>"/>
+      <?php echo $data["email_err"];?>
+      <input type="email" name="email" placeholder="Email" value="<?php echo (!empty($data["email"])) ? $data["email"] : "" ; ?>"/>
+      <?php echo $data["confirm_email_err"];?>
       <input
         type="email"
         name="confirm_email"
         placeholder="Confirm Email"
-        required
-      />
-      <input type="password" name="password" placeholder="Password" required />
+        value="<?php echo (!empty($data["confirm_email"])) ? $data["confirm_email"] : "" ; ?>"
+        />
+      <?php echo $data["password_err"];?>
+      <input type="password" name="password" placeholder="Password" value="<?php echo (!empty($data["password"])) ? $data["password"] : "" ; ?>"/>
+      <?php echo $data["confirm_password_err"];?>
       <input
         type="password"
         name="confirm_password"
         placeholder="Confirm Password"
-        required
-      />
+        value="<?php echo (!empty($data["confirm_password"])) ? $data["confirm_password"] : "" ; ?>"
+        />
       <input type="submit" name="submit" value="SUBMIT" />
     </form>
     <a class="have_account" href="<?php echo URLROOT ?>/users/login"
