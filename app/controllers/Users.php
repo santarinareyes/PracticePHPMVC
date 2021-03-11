@@ -31,11 +31,11 @@
                 ];
 
                 if($this->userModel->findUserByUsername($data["username"])){
-                    $data["username_err"] = "Username is already taken";
+                    $data["username_err"] = Constants::$regEmailErr2;
                 }
 
                 if($this->userModel->findUserByEmail($data["email"])){
-                    $data["email_err"] = "Email is already taken";
+                    $data["email_err"] = Constants::$regEmailErr2;
                 }
 
                 $data["firstname_err"] = FormValidator::validateString($data["firstname"]);
