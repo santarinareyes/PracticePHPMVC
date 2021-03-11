@@ -10,8 +10,10 @@
       <span>to continue to Richflix</span>
     </div>
     <form action="" method="POST">
-      <input type="text" name="username" placeholder="Username" required />
-      <input type="password" name="password" placeholder="Password" required />
+    <?php echo $data["username_err"];?>
+      <input type="text" name="username" placeholder="Username" value="<?php echo $data["username"]; ?>"/>
+      <?php echo $data["password_err"];?>
+      <input type="password" name="password" placeholder="Password"/>
       <input type="submit" name="submit" value="SUBMIT" />
     </form>
     <a class="have_account" href="<?php echo URLROOT ?>/users/register"

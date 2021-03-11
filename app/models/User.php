@@ -29,6 +29,20 @@
             }
         }
 
+        public function login($data){
+            $this->db->query("SELECT * FROM users where username = :username");
+            $this->db->bind(":username", $data["username"]);
+
+            $row = $this->db->single();
+            $hashed_password = $row->user_password;
+
+            if(password_verify($data["password"], $hashed_password)){
+                return $row;
+            } else {
+                return false;
+            }
+        }
+
         public function register($data){
             $this->db->query("INSERT INTO users (
                               user_firstname, user_lastname, username, user_email, user_password)
