@@ -7,6 +7,28 @@
             $this->db = new Database();
         }
 
+        public function findUserByUsername($username){
+            $this->db->query("SELECT * FROM users WHERE username = :username");
+            $this->db->bind(":username", $username);
+
+            if($this->db->single()){
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public function findUserByEmail($email){
+            $this->db->query("SELECT * FROM users WHERE user_email = :user_email");
+            $this->db->bind(":user_email", $email);
+
+            if($this->db->single()){
+                return true;
+            } else {
+                return false;
+            }
+        }
+
         public function register($data){
             $this->db->query("INSERT INTO users (
                               user_firstname, user_lastname, username, user_email, user_password)

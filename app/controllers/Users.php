@@ -30,6 +30,14 @@
                     "confirm_password_err" => "",
                 ];
 
+                if($this->userModel->findUserByUsername($data["username"])){
+                    $data["username_err"] = "Username is already taken";
+                }
+
+                if($this->userModel->findUserByEmail($data["email"])){
+                    $data["email_err"] = "Email is already taken";
+                }
+
                 $data["firstname_err"] = FormValidator::validateString($data["firstname"]);
                 $data["lastname_err"] = FormValidator::validateString($data["firstname"]);
                 $data["confirm_email_err"] = FormValidator::validateConfirmEmail($data["email"], $data["confirm_email"]);
