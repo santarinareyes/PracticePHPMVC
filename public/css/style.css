@@ -21,9 +21,11 @@
   width: 28rem;
   box-shadow: rgba(0, 0, 0, 0.1) 0 1px 2px;
   padding: 1.2rem 2.1rem;
+  overflow-y: auto;
 }
 
 .column form {
+  margin-top: 1.5rem;
   display: flex;
   flex-direction: column;
 }
@@ -32,7 +34,7 @@
 .column form input[type="email"],
 .column form input[type="password"] {
   font-size: 0.9rem;
-  margin: 0.6rem 0;
+  margin: 0.9rem 0;
   border: none;
   border-bottom: 1px solid #dedede;
 }
@@ -64,4 +66,14 @@
 
 .column .header span {
   font-size: 0.9rem;
+}
+
+.column .header img {
+  width: 6.1rem;
+}
+
+.column .have_account {
+  font-size: 0.8rem;
+  font-weight: 400;
+  text-decoration: none;
 }
