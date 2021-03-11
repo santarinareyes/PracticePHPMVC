@@ -21,14 +21,34 @@
                     "confirm_email" => FormSanitizer::sanitizeEmail($_POST["confirm_email"]),
                     "password" => FormSanitizer::sanitizePassword($_POST["password"]),
                     "confirm_password" => FormSanitizer::sanitizePassword($_POST["confirm_password"]),
+                    "firstname_err" => "",
+                    "lastname_err" => "",
+                    "username_err" => "",
+                    "email_err" => "",
+                    "confirm_email_err" => "",
+                    "confirm_password_err" => "",
                 ];
+
+                $data["firstname_err"] = FormValidator::validateString($data["firstname"]);
+                $data["lastname_err"] = FormValidator::validateString($data["firstname"]);
                 
                 $this->view("users/register", $data);
 
             } else {
 
                 $data =[
-                    "test" => "test"
+                    "firstname" => "",
+                    "lastname" => "",
+                    "username" => "",
+                    "email" => "",
+                    "confirm_email" => "",
+                    "password" => "",
+                    "firstname_err" => "",
+                    "lastname_err" => "",
+                    "username_err" => "",
+                    "email_err" => "",
+                    "confirm_email_err" => "",
+                    "confirm_password_err" => "",
                 ];
                 
                 $this->view("users/register", $data);

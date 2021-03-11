@@ -10,6 +10,7 @@
       <span>to continue to Richflix</span>
     </div>
     <form action="" method="POST">
+      <?php echo $data["firstname_err"];?>
       <input type="text" name="firstname" placeholder="Firstname" required />
       <input type="text" name="lastname" placeholder="Lastname" required />
       <input type="text" name="username" placeholder="Username" required />
