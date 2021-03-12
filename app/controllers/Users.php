@@ -46,15 +46,16 @@
                 $data["password_err"] = FormValidator::validatePassword($data["password"]);
                 $data["confirm_password_err"] = FormValidator::validateConfirmPassword($data["password"], $data["confirm_password"]);
 
-                $this->view("users/register", $data);
-
                 if(empty($data["firstname_err"]) && empty($data["lastname_err"]) && empty($data["username_err"]) && empty($data["email_err"]) && empty($data["password_err"]) && empty($data["confirm_email_err"]) && empty($data["confirm_password_err"])){
                     $data["password"] = password_hash($data["password"], PASSWORD_DEFAULT);
                     if($this->userModel->register($data)){
-                        header("location:" . URLROOT . "/users/login");
+                        redirect("users/login");
                     } else {
                         die("Something went wrong");
                     }
+                } else {
+
+                    $this->view("users/register", $data);
                 }
 
             } else {
@@ -89,6 +90,7 @@
                 } else {
                     if($user = $this->userModel->login($data)){
                         $this->createUserSession($user);
+                        redirect("pages");
                     } else {
                         $data["password_err"] = "<span class='error_message'>" . Constants::$passwordIncorrect . "</span>";
                     }
@@ -108,7 +110,7 @@
             }
         }
 
-        public function createUserSession($user){
+        private function createUserSession($user){
             $_SESSION["user_id"] = $user->user_id;
             $_SESSION["username"] = $user->username;
             $_SESSION["subscribed"] = $user->subscribed;

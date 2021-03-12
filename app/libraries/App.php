@@ -1,6 +1,6 @@
 <?php 
     class App {
-        public $currentController = "Pages";
+        public $currentController = "Start";
         public $currentMethod = "index";
         public $params = [];
 
