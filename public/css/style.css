@@ -101,3 +101,35 @@
   background-color: rgba(0, 0, 0, 0.3);
   position: absolute;
 }
+
+.preview_overlay .main_details h3 {
+  color: #fff;
+  font-size: 2.5rem;
+  margin: 1rem 0;
+}
+
+.preview_overlay .main_details {
+  position: relative;
+  top: 35%;
+  margin-left: 3rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.main_details button {
+  background-color: rgba(51, 51, 51, 0.4);
+  color: #fff;
+  border: none;
+  min-width: 9rem;
+  padding: 0 2rem;
+  height: 3rem;
+  max-height: 3rem;
+  font-size: 1rem;
+  border-radius: 2px;
+  margin-bottom: 1rem;
+  margin-right: 0.3rem;
+}
+
+button i {
+  color: inherit;
+}
