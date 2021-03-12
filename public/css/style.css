@@ -128,8 +128,14 @@
   border-radius: 2px;
   margin-bottom: 1rem;
   margin-right: 0.3rem;
+  cursor: pointer;
 }
 
 button i {
   color: inherit;
+}
+
+.main_details button:hover {
+  background-color: #e6e6e6;
+  color: #000;
 }
