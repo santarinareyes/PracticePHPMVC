@@ -243,3 +243,28 @@ button i {
 .season .no_scroll {
   white-space: normal;
 }
+
+.watch_container video {
+  width: 100%;
+}
+
+.video_controls {
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.video_controls h1 {
+  color: #fff;
+}
+
+.video_controls button {
+  font-size: 3.1rem;
+  padding: 3.1rem;
+  color: #fff;
+  background: transparent;
+  border: none;
+}

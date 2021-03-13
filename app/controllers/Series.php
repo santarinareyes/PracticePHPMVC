@@ -39,9 +39,11 @@
 
         public function watch($id){
             if(!empty($id)){
+                $updateViewCount = $this->videoModel->updateViewCount($id); 
+                $video = $this->videoModel->getSingleVideo($id); 
                 
                 $data = [
-
+                    "video" => $video,
                 ];
                 
                 $this->view("series/watch", $data);
