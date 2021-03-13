@@ -12,15 +12,12 @@
         public function index(){
             $randomEntity = $this->entityModel->getRandomEntity();
             $categories = $this->entityModel->getCategories();
-
-            for ($i = 0; $i < count($categories); $i++){
-                $entities = $this->entityModel->getEntities($categories[$i]->category_id);
-            }
+            $allEntities = $this->entityModel->getAllEntities();
             
             $data = [
-                "randomEntity" => $randomEntity,
+                "random_entity" => $randomEntity,
                 "categories" => $categories,
-                "entities" => $entities,
+                "all_entities" => $allEntities,
             ];
             
             $this->view("start/index", $data);

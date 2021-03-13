@@ -15,12 +15,13 @@
         }
 
         public function getCategories(){
-            $this->db->query("SELECT * FROM categories");
+            $this->db->query("SELECT * FROM categories c
+                              INNER JOIN entities e on c.category_id = e.entity_category_id ");
             return $this->db->resultSet();
         }
 
-        public function getEntities($category_id){
-            $this->db->query("SELECT * FROM entities WHERE entity_category_id = $category_id");
+        public function getAllEntities(){
+            $this->db->query("SELECT * FROM entities");
             return $this->db->resultSet();
         }
     }
