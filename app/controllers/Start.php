@@ -22,4 +22,19 @@
             
             $this->view("start/index", $data);
         }
+
+        public function entity($id = ""){
+            if(!empty($id)){
+
+                $entity = $this->entityModel->getSingleEntity($id);
+                
+                $data = [
+                    "entity" => $entity,
+                ];
+                
+                $this->view("start/entity", $data);
+            } else {
+                redirect("start");
+            }
+        }
     }

@@ -14,6 +14,13 @@
             return $this->db->single();
         }
 
+        public function getSingleEntity($id){
+            $this->db->query("SELECT * FROM entities WHERE entity_id = :id");
+            $this->db->bind(":id", $id);
+
+            return $this->db->single();
+        }
+
         public function getCategories(){
             $this->db->query("SELECT * FROM categories c
                               INNER JOIN entities e on c.category_id = e.entity_category_id 

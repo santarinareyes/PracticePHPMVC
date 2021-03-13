@@ -15,16 +15,20 @@
 <div class="preview_categories">
     <?php foreach($data["categories"] as $category):?>
     <div class="category">
-        <?php echo $category->category_name;?>
-    </div>
-    <?php foreach($data["all_entities"] as $entity):?>
-    <?php if($entity->entity_category_id === $category->category_id):?>
-        <a href="entity.php?id=<?php echo $entity->entity_id?>">
-            <div class="preview_container small">
-                <img src="<?php echo $entity->entity_thumbnail?>" alt="" title="<?php echo $entity->entity_name?>">
-            </div>
+        <a href="<?php echo URLROOT?>/category/<?php echo $category->category_id?>">
+            <h3><?php echo $category->category_name;?></h3>
         </a>
-    <?php endif;?>
-    <?php endforeach;?>
+    </div>
+    <div class="entities">
+        <?php foreach($data["all_entities"] as $entity):?>
+            <?php if($entity->entity_category_id === $category->category_id):?>
+                <a href="<?php echo URLROOT;?>/start/entity/<?php echo $entity->entity_id?>">
+                    <div class="preview_container small">
+                        <img src="<?php echo $entity->entity_thumbnail?>" alt="" title="<?php echo $entity->entity_name?>">
+                    </div>
+                </a>
+            <?php endif;?>
+        <?php endforeach;?>
+    </div>
     <?php endforeach;?>
 </div>

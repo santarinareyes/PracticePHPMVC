@@ -6,6 +6,18 @@
   color: #333;
 }
 
+h3 {
+  color: #e5e5e5;
+}
+
+a h3:hover {
+  color: #fff;
+}
+
+a {
+  text-decoration: none;
+}
+
 .wrapper {
   min-width: 66rem;
   min-height: 100%;
@@ -157,4 +169,24 @@ button i {
 .main_details button:hover {
   background-color: #e6e6e6;
   color: #000;
+}
+
+.category {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+}
+
+.category h3 {
+  margin-top: 2rem;
+}
+
+.entities {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.preview_categories {
+  padding: 0 3rem;
 }
