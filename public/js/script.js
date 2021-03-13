@@ -17,7 +17,7 @@ function goBack() {
   window.history.back();
 }
 
-function hideTimer() {
+function startHideTimer() {
   let timer = null;
 
   $(document).on("mousemove", function () {
@@ -31,7 +31,46 @@ function hideTimer() {
 }
 
 function initVideo(videoId, userId) {
-  hideTimer();
-  console.log(videoId);
-  console.log(userId);
+  startHideTimer();
+  updateProgressTimer(videoId, userId);
+}
+
+function updateProgressTimer(videoId, userId) {
+  addDuration(videoId, userId);
+
+  var timer;
+  $("video")
+    .on("playing", function (event) {
+      window.clearInterval(timer);
+      timer = window.setInterval(function () {
+        updateProgress(videoId, userId, event.target.currentTime);
+      }, 2000);
+    })
+    .on("pause", function () {
+      window.clearInterval(timer);
+    });
+}
+
+function addDuration(videoId, userId) {
+  $.post(
+    "../../public/ajax/addDuration.php",
+    { video_id: videoId, user_id: userId },
+    function (data) {
+      if (data !== null && data !== "") {
+        alert(data);
+      }
+    }
+  );
+}
+
+function updateProgress(videoId, userId, progress) {
+  $.post(
+    "../../public/ajax/updateDuration.php",
+    { video_id: videoId, user_id: userId, video_progress: progress },
+    function (data) {
+      if (data !== null && data !== "") {
+        alert(data);
+      }
+    }
+  );
 }
