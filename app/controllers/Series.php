@@ -43,6 +43,7 @@
                 $video = $this->videoModel->getSingleVideo($id); 
                 
                 $data = [
+                    "video_id" => $id,
                     "video" => $video,
                 ];
                 
