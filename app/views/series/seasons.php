@@ -12,23 +12,27 @@
         </div>
     </div>
 </div>
-<div class="preview_categories">
     <?php foreach($data["seasons"] as $season):?>
-    <div class="category">
+    <div class="season">
         <a href="">
             <h3>Season <?php echo $season->video_season;?></h3>
         </a>
-    </div>
-    <div class="entities">
+        <div class="videos">
         <?php foreach($data["season_videos"] as $video):?>
             <?php if($video->video_season === $season->video_season):?>
-                <a href="">
-                    <div class="preview_container small">
+                <a href="<?php echo URLROOT;?>/series/watch/<?php echo $video->video_id?>">
+                <div class="episode_container">
+                    <div class="contents">
                         <img src="<?php echo URLROOT; ?>/<?php echo $video->entity_thumbnail?>" alt="" title="<?php echo $video->entity_name?>">
+                        <div class="video_info">
+                            <h4><?php echo $video->video_episode . ". " .$video->video_title;?></h4>
+                            <span><?php echo $video->video_description;?></span>
+                        </div>
                     </div>
-                </a>
+                </div>
+            </a>
             <?php endif;?>
-        <?php endforeach;?>
+            <?php endforeach;?>
+        </div>
     </div>
     <?php endforeach;?>
-</div>

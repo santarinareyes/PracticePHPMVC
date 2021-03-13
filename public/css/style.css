@@ -181,7 +181,8 @@ button i {
   margin-top: 2rem;
 }
 
-.entities {
+.entities,
+.videos {
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
@@ -189,4 +190,51 @@ button i {
 
 .preview_categories {
   padding: 0 3rem;
+}
+
+.season {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 50px;
+}
+
+.episode_container {
+  display: inline-flex;
+  justify-content: center;
+  margin-right: 4px;
+}
+
+.episode_container .contents {
+  display: flex;
+  flex-direction: column;
+  width: 230px;
+}
+
+.episode_container img {
+  width: 230px;
+  height: 129px;
+  object-fit: cover;
+}
+
+.season h3 {
+  margin-top: 2rem;
+  margin-bottom: 10px;
+}
+
+.episode_container .video_info span {
+  color: #fff;
+  width: 100%;
+  white-space: normal;
+}
+
+.episode_container .video_info h4 {
+  color: #fff;
+  width: 100%;
+  white-space: normal;
+  margin: 0.8rem 0;
+}
+
+.episode_container .video_info {
+  max-height: 200px;
+  overflow-y: auto;
 }
