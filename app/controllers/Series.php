@@ -8,6 +8,7 @@
 
             $this->entityModel = $this->model("Entity");
             $this->categoryModel = $this->model("Category");
+            $this->videoModel = $this->model("Video");
         }
 
         public function index(){
@@ -23,6 +24,7 @@
                 $suggested_videos = $this->entityModel->getSuggestedVideos($id);
                 
                 $data = [
+                    "current_entity" => $id,
                     "entity" => $entity,
                     "seasons" => $seasons,
                     "season_videos" => $season_videos,
@@ -30,6 +32,19 @@
                 ];
                 
                 $this->view("series/seasons", $data);
+            } else {
+                redirect("start");
+            }
+        }
+
+        public function watch($id){
+            if(!empty($id)){
+                
+                $data = [
+
+                ];
+                
+                $this->view("series/watch", $data);
             } else {
                 redirect("start");
             }

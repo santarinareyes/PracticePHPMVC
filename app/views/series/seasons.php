@@ -40,13 +40,15 @@
             <h3>You might also like</h3>
         <div class="no_scroll">
         <?php foreach($data["suggested_videos"] as $video):?>
+            <?php if($video->video_entity_id != $data["current_entity"]):?>
                 <a href="<?php echo URLROOT;?>/series/watch/<?php echo $video->video_id?>">
-                <div class="episode_container">
-                    <div class="contents">
-                        <img src="<?php echo URLROOT; ?>/<?php echo $video->entity_thumbnail?>" alt="" title="<?php echo $video->entity_name?>">
+                    <div class="episode_container">
+                        <div class="contents">
+                            <img src="<?php echo URLROOT; ?>/<?php echo $video->entity_thumbnail?>" alt="" title="<?php echo $video->entity_name?>">
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            <?php endif;?>
             <?php endforeach;?>
         </div>
     </div>
