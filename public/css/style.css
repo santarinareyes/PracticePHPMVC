@@ -22,6 +22,7 @@ a {
   min-width: 66rem;
   min-height: 100rem;
   background-color: #141414;
+  padding-bottom: 6rem;
 }
 
 .sign_in_container {
@@ -237,4 +238,8 @@ button i {
 .episode_container .video_info {
   max-height: 200px;
   overflow-y: auto;
+}
+
+.season .no_scroll {
+  white-space: normal;
 }

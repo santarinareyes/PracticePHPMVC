@@ -7,11 +7,12 @@
             }
 
             $this->entityModel = $this->model("Entity");
+            $this->categoryModel = $this->model("Category");
         }
 
         public function index(){
             $randomEntity = $this->entityModel->getRandomEntity();
-            $categories = $this->entityModel->getCategories();
+            $categories = $this->categoryModel->getCategories();
             $allEntities = $this->entityModel->getAllEntities();
             
             $data = [

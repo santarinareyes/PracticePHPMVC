@@ -36,3 +36,17 @@
         </div>
     </div>
     <?php endforeach;?>
+    <div class="season">
+            <h3>You might also like</h3>
+        <div class="no_scroll">
+        <?php foreach($data["suggested_videos"] as $video):?>
+                <a href="<?php echo URLROOT;?>/series/watch/<?php echo $video->video_id?>">
+                <div class="episode_container">
+                    <div class="contents">
+                        <img src="<?php echo URLROOT; ?>/<?php echo $video->entity_thumbnail?>" alt="" title="<?php echo $video->entity_name?>">
+                    </div>
+                </div>
+            </a>
+            <?php endforeach;?>
+        </div>
+    </div>

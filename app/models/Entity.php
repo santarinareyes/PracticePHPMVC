@@ -21,13 +21,6 @@
             return $this->db->single();
         }
 
-        public function getCategories(){
-            $this->db->query("SELECT * FROM categories c
-                              INNER JOIN entities e on c.category_id = e.entity_category_id 
-                              GROUP BY category_name");
-            return $this->db->resultSet();
-        }
-
         public function getAllEntities(){
             $this->db->query("SELECT * FROM entities");
             return $this->db->resultSet();
@@ -47,6 +40,17 @@
                               INNER JOIN entities e ON v.video_entity_id = e.entity_id 
                               WHERE video_entity_id = :id 
                               ORDER BY video_season, video_episode ASC");
+            $this->db->bind(":id", $id);
+            return $this->db->resultSet();
+        }
+
+        public function getSuggestedVideos($id){
+            $this->db->query("SELECT * FROM videos v 
+                              INNER JOIN entities e ON v.video_entity_id = e.entity_id 
+                              WHERE entity_category_id = 
+                                (SELECT entity_category_id FROM entities 
+                                 WHERE entity_id = :id) 
+                              GROUP BY entity_id");
             $this->db->bind(":id", $id);
             return $this->db->resultSet();
         }
