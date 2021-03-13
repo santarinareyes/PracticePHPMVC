@@ -32,4 +32,22 @@
             $this->db->query("SELECT * FROM entities");
             return $this->db->resultSet();
         }
+        
+        public function getSeasons($id){
+            $this->db->query("SELECT * FROM videos 
+                              WHERE video_entity_id = :id 
+                              GROUP BY video_season 
+                              ORDER BY video_season ASC");
+            $this->db->bind(":id", $id);
+            return $this->db->resultSet();
+        }
+
+        public function getSeasonVideos($id){
+            $this->db->query("SELECT * FROM videos v 
+                              INNER JOIN entities e ON v.video_entity_id = e.entity_id 
+                              WHERE video_entity_id = :id 
+                              ORDER BY video_season, video_episode ASC");
+            $this->db->bind(":id", $id);
+            return $this->db->resultSet();
+        }
     }
