@@ -5,8 +5,11 @@
     <div class="preview_overlay">
         <div class="main_details">
             <h3><?php echo $data["random_entity"]->entity_name; ?></h3>
+                <?php if(isset($data["resume_entity"]->video_episode)):?>
+                <h4><?php echo (($data["random_entity"])->video_isMovie == 0) ? "Season " . $data["resume_entity"]->video_season . ", Episode " . $data["resume_entity"]->video_episode : "" ?></h4>
+                <?php endif;?>
             <div class="buttons">
-                <button <?php echo "onclick='watchVideo(" . $data["resume_entity"] . ")'" ?>><i class="fas fa-play"></i> Play</button>
+                <button <?php echo "onclick='playNext(" . $data["resume_entity"]->video_id . ")'" ?>><i class="fas fa-play"></i> Play</button>
                 <button onclick="volumeToggle(this)"><i class="fas fa-volume-mute"></i></button>
             </div>
         </div>

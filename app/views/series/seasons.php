@@ -6,7 +6,7 @@
         <div class="main_details">
             <h3><?php echo $data["entity"]->entity_name; ?></h3>
             <div class="buttons">
-                <button><i class="fas fa-play"></i> Play</button>
+                <button <?php echo "onclick='playNext(" . $data["resume_entity"] . ")'" ?>><i class="fas fa-play"></i> Play</button>
                 <button onclick="volumeToggle(this)"><i class="fas fa-volume-mute"></i></button>
             </div>
         </div>

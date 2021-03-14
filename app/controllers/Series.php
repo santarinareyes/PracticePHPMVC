@@ -24,12 +24,17 @@
                 $suggested_videos = $this->entityModel->getSuggestedVideos($id);
                 
                 $data = [
+                    "user_id" => $_SESSION["user_id"],
                     "current_entity" => $id,
                     "entity" => $entity,
                     "seasons" => $seasons,
                     "season_videos" => $season_videos,
                     "suggested_videos" => $suggested_videos,
+                    "resume_entity" => "",
                 ];
+
+                $resumeEntity = $this->entityModel->getUsersLastViewed($data);
+                $data["resume_entity"] = $resumeEntity;
                 
                 $this->view("series/seasons", $data);
             } else {

@@ -114,13 +114,9 @@ function restartVideo() {
 }
 
 function playNext(videoId) {
-  window.location.href = videoId;
+  window.location.href = "http://localhost/netflix/series/watch/" + videoId;
 }
 
 function showUpNextNav() {
   $(".up_next").fadeIn();
-}
-
-function watchVideo(videoId) {
-  window.location.href = "series/watch/" + videoId;
 }
