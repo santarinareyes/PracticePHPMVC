@@ -49,7 +49,8 @@
                               INNER JOIN entities e ON v.video_entity_id = e.entity_id 
                               WHERE entity_category_id = (
                                     SELECT entity_category_id FROM entities 
-                                    WHERE entity_id = :id) 
+                                    WHERE entity_id = :id
+                                    ) 
                               GROUP BY entity_id");
             $this->db->bind(":id", $id);
             return $this->db->resultSet();
