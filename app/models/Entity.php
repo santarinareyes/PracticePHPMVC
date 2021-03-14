@@ -58,7 +58,7 @@
         }
 
         public function getUsersEntityInfo($data){
-            $this->db->query("SELECT vp.video_id, v.video_season, v.video_episode FROM videoprogress vp 
+            $this->db->query("SELECT vp.video_progress, vp.video_id, v.video_season, v.video_episode FROM videoprogress vp 
                               INNER JOIN videos v ON vp.video_id = v.video_id 
                               WHERE v.video_entity_id = :video_entity_id 
                               AND vp.user_id = :user_id 
@@ -69,7 +69,7 @@
             $this->db->execute();
 
             if($this->db->rowCount() == 0){
-                $this->db->query("SELECT video_id FROM videos 
+                $this->db->query("SELECT vp.video_progress, vp.video_id, v.video_season, v.video_episode FROM videos 
                                   WHERE video_entity_id = :video_entity_id 
                                   ORDER BY video_season, video_episode ASC 
                                   LIMIT 1");
@@ -81,7 +81,7 @@
         }
 
         public function getUsersLastViewed($data){
-            $this->db->query("SELECT vp.video_id FROM videoprogress vp 
+            $this->db->query("SELECT vp.video_progress, vp.video_id, v.video_season, v.video_episode FROM videoprogress vp 
                               INNER JOIN videos v ON vp.video_id = v.video_id 
                               WHERE v.video_entity_id = :video_entity_id 
                               AND vp.user_id = :user_id 
@@ -92,14 +92,14 @@
             $this->db->execute();
 
             if($this->db->rowCount() == 0){
-                $this->db->query("SELECT video_id FROM videos 
+                $this->db->query("SELECT vp.video_progress, vp.video_id, v.video_season, v.video_episode FROM videos 
                                   WHERE video_entity_id = :video_entity_id 
                                   ORDER BY video_season, video_episode ASC 
                                   LIMIT 1");
                 $this->db->bind(":video_entity_id", $data["current_entity"]);
-                return $this->db->fetchColumn();
+                return $this->db->single();
             } else {
-                return $this->db->fetchColumn();
+                return $this->db->single();
             }
         }
     }

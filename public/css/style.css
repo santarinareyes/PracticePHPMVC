@@ -140,6 +140,12 @@ a {
   margin: 1rem 0;
 }
 
+.preview_overlay .main_details h4 {
+  color: #fff;
+  font-size: 1.25rem;
+  margin: 0.5rem 0;
+}
+
 .preview_overlay .main_details {
   position: relative;
   top: 35%;

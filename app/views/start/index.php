@@ -9,7 +9,13 @@
                 <h4><?php echo (($data["random_entity"])->video_isMovie == 0) ? "Season " . $data["resume_entity"]->video_season . ", Episode " . $data["resume_entity"]->video_episode : "" ?></h4>
                 <?php endif;?>
             <div class="buttons">
-                <button <?php echo "onclick='playNext(" . $data["resume_entity"]->video_id . ")'" ?>><i class="fas fa-play"></i> Play</button>
+                <button <?php echo "onclick='playNext(" . $data["resume_entity"]->video_id . ")'" ?>><i class="fas fa-play"></i> 
+                <?php if(isset($data["resume_entity"]->video_progress)):?>
+                <?php echo (($data["resume_entity"])->video_progress == 0) ? " Play" : " Continue watching" ?>
+                <?php else:?>
+                <?php echo "Play";?>
+                <?php endif;?>
+                </button>
                 <button onclick="volumeToggle(this)"><i class="fas fa-volume-mute"></i></button>
             </div>
         </div>
