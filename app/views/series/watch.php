@@ -3,7 +3,7 @@
         <button onclick="goBack()"><i class="fas fa-arrow-left" aria-hidden="true"></i></button>
         <h1><?php echo $data["video"]->video_title;?></h1>
     </div>
-        <div class="video_controls up_next">
+        <div class="video_controls up_next" style="display: none;">
             <button onclick="restartVideo();"><i class="fas fa-redo" aria-hidden="true"></i></button>
             <div class="up_next_container">
                 <h2>Up next:</h2>
@@ -16,7 +16,7 @@
                 </button>
             </div>
         </div>
-    <video src="<?php echo URLROOT;?>/<?php echo $data["video"]->video_filePath;?>" type="video/mp4" controls autoplay muted></video>
+    <video src="<?php echo URLROOT;?>/<?php echo $data["video"]->video_filePath;?>" type="video/mp4" controls autoplay muted onended="showUpNextNav();"></video>
 <?php print_r ($data["next_episode"]);?>
 <?php echo "</br>". $data["next_episode"]->video_id?>
 </div>

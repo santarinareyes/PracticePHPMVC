@@ -55,4 +55,27 @@
             $this->db->bind(":id", $id);
             return $this->db->resultSet();
         }
+
+        public function getUsersEntityInfo($data){
+            $this->db->query("SELECT vp.video_id FROM videoprogress vp 
+                              INNER JOIN videos v ON vp.video_id = v.video_id 
+                              WHERE v.video_entity_id = :video_entity_id 
+                              AND vp.user_id = :user_id 
+                              ORDER BY vp.date_modified DESC 
+                              LIMIT 1");
+            $this->db->bind(":video_entity_id", $data["random_entity"]->entity_id);
+            $this->db->bind(":user_id", $data["user_id"]);
+            $this->db->execute();
+
+            if($this->db->rowCount() == 0){
+                $this->db->query("SELECT video_id FROM videos 
+                                  WHERE video_entity_id = :video_entity_id 
+                                  ORDER BY video_season, video_episode ASC 
+                                  LIMIT 1");
+                $this->db->bind(":video_entity_id", $data["random_entity"]->entity_id);
+                return $this->db->fetchColumn();
+            } else {
+                return $this->db->fetchColumn();
+            }
+        }
     }

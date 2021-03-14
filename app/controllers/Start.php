@@ -16,10 +16,15 @@
             $allEntities = $this->entityModel->getAllEntities();
             
             $data = [
+                "user_id" => $_SESSION["user_id"],
                 "random_entity" => $randomEntity,
                 "categories" => $categories,
                 "all_entities" => $allEntities,
+                "resume_entity" => "",
             ];
+
+            $resumeEntity = $this->entityModel->getUsersEntityInfo($data);
+            $data["resume_entity"] = $resumeEntity;
             
             $this->view("start/index", $data);
         }
