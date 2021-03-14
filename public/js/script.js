@@ -106,3 +106,13 @@ function setStartTime(videoId, userId) {
     }
   );
 }
+
+function restartVideo() {
+  $("video")[0].currentTime = 0;
+  $("video")[0].play();
+  $(".up_next").fadeOut();
+}
+
+function playNext(videoId) {
+  window.location.href = videoId;
+}
