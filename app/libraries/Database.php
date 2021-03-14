@@ -66,4 +66,9 @@
         public function rowCount(){
             return $this->stm->rowCount();
         }
+
+        public function fetchColumn(){
+            $this->execute();
+            return $this->stm->fetchColumn();
+        }
     }

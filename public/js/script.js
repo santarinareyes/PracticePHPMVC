@@ -32,6 +32,7 @@ function startHideTimer() {
 
 function initVideo(videoId, userId) {
   startHideTimer();
+  setStartTime(videoId, userId);
   updateProgressTimer(videoId, userId);
 }
 
@@ -46,7 +47,8 @@ function updateProgressTimer(videoId, userId) {
         updateProgress(videoId, userId, event.target.currentTime);
       }, 2000);
     })
-    .on("pause", function () {
+    .on("ended", function () {
+      setVideoSeen(videoId, userId);
       window.clearInterval(timer);
     });
 }
@@ -71,6 +73,36 @@ function updateProgress(videoId, userId, progress) {
       if (data !== null && data !== "") {
         alert(data);
       }
+    }
+  );
+}
+
+function setVideoSeen(videoId, userId) {
+  $.post(
+    "../../public/ajax/setVideoSeen.php",
+    { video_id: videoId, user_id: userId },
+    function (data) {
+      if (data !== null && data !== "") {
+        alert(data);
+      }
+    }
+  );
+}
+
+function setStartTime(videoId, userId) {
+  $.post(
+    "../../public/ajax/getStartTime.php",
+    { video_id: videoId, user_id: userId },
+    function (data) {
+      if (isNaN(data)) {
+        alert(data);
+        return;
+      }
+
+      $("video").on("canplay", function () {
+        this.currentTime = data;
+        $("video").off("canplay");
+      });
     }
   );
 }
