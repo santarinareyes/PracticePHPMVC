@@ -31,7 +31,7 @@
     <div class="entities">
         <?php foreach($data["all_entities"] as $entity):?>
             <?php if($entity->entity_category_id === $category->category_id):?>
-                <a href="<?php echo URLROOT;?>/series/seasons/<?php echo $entity->entity_id?>">
+                <a href="<?php echo URLROOT;?><?php echo ($entity->video_isMovie == 0) ? "/series/seasons/$entity->entity_id" : "/movies/watch/$entity->video_id"?>">
                     <div class="preview_container small">
                         <img src="<?php echo $entity->entity_thumbnail?>" alt="" title="<?php echo $entity->entity_name?>">
                     </div>

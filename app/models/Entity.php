@@ -23,7 +23,9 @@
         }
 
         public function getAllEntities(){
-            $this->db->query("SELECT * FROM entities");
+            $this->db->query("SELECT * FROM entities e 
+                              INNER JOIN videos v ON e.entity_id = v.video_entity_id 
+                              GROUP BY e.entity_name");
             return $this->db->resultSet();
         }
         
@@ -81,7 +83,7 @@
         }
 
         public function getUsersLastViewed($data){
-            $this->db->query("SELECT vp.video_progress, vp.video_id, v.video_season, v.video_episode FROM videoprogress vp 
+            $this->db->query("SELECT v.video_isMovie, vp.video_progress, vp.video_id, v.video_season, v.video_episode FROM videoprogress vp 
                               INNER JOIN videos v ON vp.video_id = v.video_id 
                               WHERE v.video_entity_id = :video_entity_id 
                               AND vp.user_id = :user_id 

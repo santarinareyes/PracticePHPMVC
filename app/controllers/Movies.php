@@ -28,4 +28,27 @@
             
             $this->view("movies/index", $data);
         }
+
+        public function watch($id){
+            if(!empty($id)){
+                $updateViewCount = $this->videoModel->updateViewCount($id); 
+                $video = $this->videoModel->getSingleVideo($id);
+                
+                $data = [
+                    "video_id" => $id,
+                    "video" => $video,
+                    "next_episode" => "",
+                ];
+
+                if($this->videoModel->getNextEpisode($data)){
+                    $data["next_episode"] = $this->videoModel->getNextEpisode($data);
+                } else {
+                    redirect("start");
+                }
+                
+                $this->view("movies/watch", $data);
+            } else {
+                redirect("start");
+            }
+        }
     }

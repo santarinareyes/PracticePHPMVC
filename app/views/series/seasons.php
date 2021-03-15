@@ -26,6 +26,9 @@
         </a>
         <div class="videos">
         <?php foreach($data["season_videos"] as $video):?>
+            <?php if($video->video_isMovie == 1):?>
+                <?php redirect("start")?>
+            <?php endif;?>
             <?php if($video->video_season === $season->video_season):?>
                 <a href="<?php echo URLROOT;?>/series/watch/<?php echo $video->video_id?>">
                 <div class="episode_container">

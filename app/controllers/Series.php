@@ -49,7 +49,11 @@
                     "userSeenOrNot" => $userSeenOrNot,
                 ];
 
-                $data["resume_entity"] = $this->entityModel->getUsersLastViewed($data);
+                if($this->entityModel->getUsersLastViewed($data)){
+                    $data["resume_entity"] = $this->entityModel->getUsersLastViewed($data);
+                } else {
+                    redirect("pages");
+                }
 
                 $this->view("series/seasons", $data);
             } else {
