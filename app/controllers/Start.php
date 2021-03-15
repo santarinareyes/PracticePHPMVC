@@ -23,8 +23,7 @@
                 "resume_entity" => "",
             ];
 
-            $resumeEntity = $this->entityModel->getUsersEntityInfo($data);
-            $data["resume_entity"] = $resumeEntity;
+            $data["resume_entity"] = $this->entityModel->getUsersEntityInfo($data);
             
             $this->view("start/index", $data);
         }

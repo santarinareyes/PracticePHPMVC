@@ -69,7 +69,7 @@
             $this->db->execute();
 
             if($this->db->rowCount() == 0){
-                $this->db->query("SELECT vp.video_progress, vp.video_id, v.video_season, v.video_episode FROM videos 
+                $this->db->query("SELECT video_id, video_season, video_episode FROM videos 
                                   WHERE video_entity_id = :video_entity_id 
                                   ORDER BY video_season, video_episode ASC 
                                   LIMIT 1");
@@ -92,7 +92,7 @@
             $this->db->execute();
 
             if($this->db->rowCount() == 0){
-                $this->db->query("SELECT vp.video_progress, vp.video_id, v.video_season, v.video_episode FROM videos 
+                $this->db->query("SELECT video_id, video_season, video_episode FROM videos 
                                   WHERE video_entity_id = :video_entity_id 
                                   ORDER BY video_season, video_episode ASC 
                                   LIMIT 1");
@@ -102,4 +102,11 @@
                 return $this->db->single();
             }
         }
+
+        // public function userSeenOrNot($data){
+        //     $this->db->query("SELECT * FROM videoprogress 
+        //                       WHERE video_id = video_id AND user_id = :user_id 
+        //                       AND video_finished = 1");
+        //     $this->db->bind("video_id", $data["video_id"]);
+        // }
     }

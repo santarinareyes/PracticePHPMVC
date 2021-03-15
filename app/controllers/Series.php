@@ -31,11 +31,11 @@
                     "season_videos" => $season_videos,
                     "suggested_videos" => $suggested_videos,
                     "resume_entity" => "",
+                    "userSeenOrNot" => "",
                 ];
 
-                $resumeEntity = $this->entityModel->getUsersLastViewed($data);
-                $data["resume_entity"] = $resumeEntity;
-                
+                $data["resume_entity"] = $this->entityModel->getUsersLastViewed($data);
+
                 $this->view("series/seasons", $data);
             } else {
                 redirect("start");
