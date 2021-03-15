@@ -1,4 +1,10 @@
 "use strict";
+$(document).scroll(function () {
+  $(".main_nav-bar").toggleClass(
+    "scrolled",
+    $(this).scrollTop() > $(".main_nav-bar").height()
+  );
+});
 
 function volumeToggle(button) {
   const muted = $(".preview_video").prop("muted");

@@ -23,7 +23,6 @@
     <div class="season">
         <a href="">
             <h3>Season <?php echo $season->video_season;?></h3>
-            <?php print_r ($data["userSeenOrNot"])?>
         </a>
         <div class="videos">
         <?php foreach($data["season_videos"] as $video):?>
