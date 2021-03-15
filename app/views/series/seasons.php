@@ -23,6 +23,7 @@
     <div class="season">
         <a href="">
             <h3>Season <?php echo $season->video_season;?></h3>
+            <?php print_r ($data["userSeenOrNot"])?>
         </a>
         <div class="videos">
         <?php foreach($data["season_videos"] as $video):?>
@@ -35,6 +36,13 @@
                             <h4><?php echo $video->video_episode . ". " .$video->video_title;?></h4>
                             <span><?php echo $video->video_description;?></span>
                         </div>
+                        <?php if(!empty($data["userSeenOrNot"])):?>
+                        <?php foreach($data["userSeenOrNot"] as $seen):?>
+                        <?php if($seen->video_id === $video->video_id):?>
+                            <i class="fas fa-check-circle seen"></i>
+                        <?php endif;?>
+                        <?php endforeach;?>
+                        <?php endif;?>
                     </div>
                 </div>
             </a>

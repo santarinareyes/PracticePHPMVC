@@ -102,11 +102,4 @@
                 return $this->db->single();
             }
         }
-
-        // public function userSeenOrNot($data){
-        //     $this->db->query("SELECT * FROM videoprogress 
-        //                       WHERE video_id = video_id AND user_id = :user_id 
-        //                       AND video_finished = 1");
-        //     $this->db->bind("video_id", $data["video_id"]);
-        // }
     }

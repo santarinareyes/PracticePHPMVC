@@ -22,6 +22,7 @@
                 $seasons = $this->entityModel->getSeasons($id);
                 $season_videos = $this->entityModel->getSeasonVideos($id);
                 $suggested_videos = $this->entityModel->getSuggestedVideos($id);
+                $userSeenOrNot = $this->videoModel->userSeenOrNot($id, $_SESSION["user_id"]);
                 
                 $data = [
                     "user_id" => $_SESSION["user_id"],
@@ -31,7 +32,7 @@
                     "season_videos" => $season_videos,
                     "suggested_videos" => $suggested_videos,
                     "resume_entity" => "",
-                    "userSeenOrNot" => "",
+                    "userSeenOrNot" => $userSeenOrNot,
                 ];
 
                 $data["resume_entity"] = $this->entityModel->getUsersLastViewed($data);

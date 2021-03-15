@@ -48,4 +48,28 @@
                 return $this->db->single();
             }
         }
+
+        public function userSeenOrNot($entity_id, $user_id){
+            $this->db->query("SELECT vp.video_id FROM videos v
+                              INNER JOIN entities e ON v.video_entity_id = e.entity_id 
+                              LEFT JOIN videoprogress vp ON v.video_id = vp.video_id  
+                              WHERE video_entity_id = :entity_id AND user_id = :user_id 
+                              AND video_finished = 1");
+            $this->db->bind("entity_id", $entity_id);
+            $this->db->bind("user_id", $user_id);
+            $this->db->execute();
+
+            if($this->db->rowCount() == 0){
+                return "";
+            } else {
+                $this->db->query("SELECT vp.video_id FROM videos v
+                                  INNER JOIN entities e ON v.video_entity_id = e.entity_id 
+                                  LEFT JOIN videoprogress vp ON v.video_id = vp.video_id  
+                                  WHERE video_entity_id = :entity_id AND user_id = :user_id 
+                                  AND video_finished = 1");
+                $this->db->bind("entity_id", $entity_id);
+                $this->db->bind("user_id", $user_id);
+                return $this->db->resultSet();
+            }
+        }
     }
