@@ -102,4 +102,36 @@
                 return $this->db->single();
             }
         }
+
+        public function getRandomSeries() {
+            $this->db->query("SELECT * FROM entities e 
+                              INNER JOIN videos v on e.entity_id = v.video_entity_id 
+                              WHERE v.video_isMovie = 0 
+                              ORDER BY RAND() LIMIT 1");
+            return $this->db->single();
+        }
+
+        public function getSeriesEntities(){
+            $this->db->query("SELECT * FROM entities e 
+                              INNER JOIN videos v on e.entity_id = v.video_entity_id 
+                              WHERE v.video_isMovie = 0 
+                              GROUP BY e.entity_name");
+            return $this->db->resultSet();
+        }
+
+        public function getRandomMovie() {
+            $this->db->query("SELECT * FROM entities e 
+                              INNER JOIN videos v on e.entity_id = v.video_entity_id 
+                              WHERE v.video_isMovie = 1 
+                              ORDER BY RAND() LIMIT 1");
+            return $this->db->single();
+        }
+
+        public function getMovieEntities(){
+            $this->db->query("SELECT * FROM entities e 
+                              INNER JOIN videos v on e.entity_id = v.video_entity_id 
+                              WHERE v.video_isMovie = 1 
+                              GROUP BY e.entity_name");
+            return $this->db->resultSet();
+        }
     }

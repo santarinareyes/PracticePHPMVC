@@ -12,3 +12,7 @@
 </head>
 <body>
     <div class="wrapper">
+        <?php     
+        if(!isset($_GET["url"]) || !str_contains($_GET["url"], "watch")):
+        require APPROOT . "/views/includes/nav.php";
+        endif;?>

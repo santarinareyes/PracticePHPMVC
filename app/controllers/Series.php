@@ -12,7 +12,21 @@
         }
 
         public function index(){
-            redirect("start");
+            $random_entity = $this->entityModel->getRandomSeries();
+            $categories = $this->categoryModel->getSeriesCategories();
+            $allEntities = $this->entityModel->getSeriesEntities();
+            
+            $data = [
+                "user_id" => $_SESSION["user_id"],
+                "random_entity" => $random_entity,
+                "categories" => $categories,
+                "all_entities" => $allEntities,
+                "resume_entity" => "",
+            ];
+
+            $data["resume_entity"] = $this->entityModel->getUsersEntityInfo($data);
+            
+            $this->view("series/index", $data);
         }
 
         public function seasons($id = ""){

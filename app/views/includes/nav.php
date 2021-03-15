@@ -6,8 +6,8 @@
             </div>
             <ul class="nav-links">
                 <li><a href="<?php echo URLROOT;?>">Home</a></li>
-                <li><a href="<?php echo URLROOT;?>">TV Shows</a></li>
-                <li><a href="<?php echo URLROOT;?>">Movies</a></li>
+                <li><a href="<?php echo URLROOT . "/series";?>">TV Shows</a></li>
+                <li><a href="<?php echo URLROOT . "/movies";?>">Movies</a></li>
             </ul>
             <div class="right-nav-items">
                 <a href=""><i class="fas fa-search"></i></a>
